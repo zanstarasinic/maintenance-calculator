@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator prihrankov pri vzdrževanju | Brizganje plastike</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: #0A2540;
+            background: #FFFFFF;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        /* Container */
+        .main-container {
+            max-width: 720px;
+            margin: 0 auto;
+            background: white;
+        }
+        
+        /* Header */
+        .header {
+            padding: 48px 36px 36px;
+            background: white;
+        }
+        
+        .logo-container {
+            margin-bottom: 40px;
+        }
+        
+        .logo {
+            width: 60px;
+            height: 24px;
+            background: #072AC8;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .main-title {
+            font-size: 46px;
+            font-weight: bold;
+            letter-spacing: -1px;
+            line-height: 1.1;
+            color: #0A2540;
+            margin-bottom: 28px;
+        }
+        
+        .subtitle {
+            font-size: 22px;
+            line-height: 1.5;
+            color: #3F4B66;
+            margin-bottom: 36px;
+        }
+        
+        /* Event box - Updated colors */
+        .event-box {
+            margin: 0 36px 36px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .event-header {
+            height: 8px;
+            background: linear-gradient(90deg, #072AC8 0%, #1E96FC 100%);
+        }
+        
+        .event-content {
+            background: #F6F9FC;
+            padding: 36px;
+        }
+        
+        .event-label {
+            font-size: 15px;
+            font-weight: bold;
+            color: #072AC8;
+            margin-bottom: 16px;
+        }
+        
+        .event-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0A2540;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+        
+        /* Form sections */
+        .form-section {
+            padding: 0 36px;
+            margin-bottom: 36px;
+            display: none;
+        }
+        
+        .form-section.active {
+            display: block;
+        }
+        
+        .section-header {
+            font-size: 23px;
+            font-weight: bold;
+            color: #0A2540;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #A2D6F9;
+        }
+        
+        /* Form elements */
+        .form-group {
+            margin-bottom: 28px;
+        }
+        
+        .form-label {
+            display: block;
+            font-size: 15px;
+            font-weight: 600;
+            color: #0A2540;
+            margin-bottom: 8px;
+        }
+        
+        .form-input, .form-select {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 16px;
+            border: 1px solid #E6E9EC;
+            border-radius: 6px;
+            background: white;
+            color: #0A2540;
+            transition: all 0.15s ease;
+        }
+        
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: #1E96FC;
+            box-shadow: 0 0 0 2px rgba(30, 150, 252, 0.2);
+        }
+        
+        .form-helper {
+            font-size: 14px;
+            color: #8792A2;
+            margin-top: 6px;
+        }
+        
+        /* Input with suffix */
+        .input-group {
+            position: relative;
+        }
+        
+        .input-suffix {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #8792A2;
+            font-size: 15px;
+            pointer-events: none;
+        }
+        
+        .input-group .form-input {
+            padding-right: 60px;
+        }
+        
+        /* Radio button group */
+        .radio-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+        }
+        
+        .radio-option {
+            position: relative;
+        }
+        
+        .radio-option input {
+            position: absolute;
+            opacity: 0;
+        }
+        
+        .radio-label {
+            display: block;
+            padding: 12px 16px;
+            background: white;
+            border: 1px solid #E6E9EC;
+            border-radius: 6px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            font-size: 15px;
+            font-weight: 500;
+        }
+        
+        .radio-option input:checked + .radio-label {
+            background: linear-gradient(135deg, rgba(162, 214, 249, 0.1) 0%, rgba(30, 150, 252, 0.1) 100%);
+            border-color: #1E96FC;
+            color: #072AC8;
+            box-shadow: 0 0 0 1px #1E96FC;
+        }
+        
+        /* Button */
+        .btn {
+            padding: 12px 24px;
+            font-size: 15px;
+            font-weight: bold;
+            letter-spacing: 0.2px;
+            border-radius: 18px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            display: inline-block;
+            text-decoration: none;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #072AC8 0%, #1E96FC 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 7px 14px rgba(7, 42, 200, 0.3);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #072AC8;
+            border: 2px solid #1E96FC;
+        }
+        
+        .btn-secondary:hover {
+            background: #A2D6F9;
+            border-color: #072AC8;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 36px;
+            padding-top: 24px;
+            border-top: 1px solid #A2D6F9;
+        }
+        
+        .btn-group .btn {
+            flex: 1;
+            text-align: center;
+        }
+        
+        /* Results section */
+        .results-container {
+            padding: 36px;
+            background: linear-gradient(135deg, rgba(162, 214, 249, 0.1) 0%, rgba(252, 243, 0, 0.05) 100%);
+            margin: 36px;
+            border-radius: 8px;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-bottom: 36px;
+        }
+        
+        .metric-card {
+            background: white;
+            padding: 24px;
+            border-radius: 8px;
+            border: 1px solid #A2D6F9;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #FCF300 0%, #FFC600 100%);
+        }
+        
+        .metric-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #072AC8;
+            margin-bottom: 8px;
+        }
+        
+        .metric-value {
+            font-size: 36px;
+            font-weight: bold;
+            color: #0A2540;
+            margin-bottom: 4px;
+        }
+        
+        .metric-value.primary {
+            background: linear-gradient(135deg, #072AC8 0%, #1E96FC 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .metric-description {
+            font-size: 14px;
+            color: #3F4B66;
+        }
+        
+        /* Table */
+        .data-table {
+            width: 100%;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 36px;
+            border: 1px solid #A2D6F9;
+        }
+        
+        .data-table th {
+            background: linear-gradient(135deg, #A2D6F9 0%, rgba(252, 243, 0, 0.2) 100%);
+            padding: 12px 16px;
+            text-align: left;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #072AC8;
+            border-bottom: 1px solid #A2D6F9;
+        }
+        
+        .data-table td {
+            padding: 16px;
+            font-size: 15px;
+            color: #0A2540;
+            border-bottom: 1px solid #F3F4F6;
+        }
+        
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .data-table .highlight {
+            color: #072AC8;
+            font-weight: 600;
+        }
+        
+        .data-table .total-row {
+            font-weight: bold;
+            background: linear-gradient(135deg, rgba(162, 214, 249, 0.2) 0%, rgba(252, 243, 0, 0.1) 100%);
+        }
+        
+        /* Info box - Updated with warning color */
+        .info-box {
+            background: linear-gradient(135deg, rgba(255, 198, 0, 0.1) 0%, rgba(252, 243, 0, 0.1) 100%);
+            border: 1px solid #FFC600;
+            border-radius: 6px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .info-box-icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background: #FFC600;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+        
+        .info-box-text {
+            font-size: 14px;
+            color: #856404;
+            line-height: 1.5;
+        }
+        
+        /* Timeline */
+        .timeline {
+            margin: 36px 0;
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin-bottom: 24px;
+            position: relative;
+        }
+        
+        .timeline-item:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 16px;
+            top: 40px;
+            width: 1px;
+            height: calc(100% + 8px);
+            background: #A2D6F9;
+        }
+        
+        .timeline-number {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #072AC8 0%, #1E96FC 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            flex-shrink: 0;
+            margin-right: 16px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .timeline-content h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #072AC8;
+            margin-bottom: 4px;
+        }
+        
+        .timeline-content p {
+            font-size: 14px;
+            color: #3F4B66;
+        }
+        
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #A2D6F9 0%, rgba(252, 243, 0, 0.1) 100%);
+            padding: 48px 36px 60px;
+            margin-top: 60px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 36px;
+            border-bottom: 1px solid rgba(7, 42, 200, 0.2);
+            margin-bottom: 24px;
+        }
+        
+        .footer-logo {
+            width: 60px;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+        
+        .footer-link {
+            color: #072AC8;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .footer-link:hover {
+            color: #1E96FC;
+            text-decoration: underline;
+        }
+        
+        .footer-text {
+            font-size: 12px;
+            color: #3F4B66;
+            line-height: 1.5;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 32px;
+            }
+            
+            .subtitle {
+                font-size: 18px;
+            }
+            
+            .header, .form-section, .event-box {
+                padding-left: 24px;
+                padding-right: 24px;
+            }
+            
+            .event-box {
+                margin-left: 24px;
+                margin-right: 24px;
+            }
+            
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .radio-group {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 24px;
+            }
+        }
+        
+        /* Loading spinner */
+        .spinner {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #A2D6F9;
+            border-top: 2px solid #072AC8;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-left: 8px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Accent highlights */
+        .accent-highlight {
+            background: linear-gradient(135deg, transparent 0%, rgba(252, 243, 0, 0.2) 50%, transparent 100%);
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo-container">
+                <div class="logo">VM</div>
+            </div>
+            <h1 class="main-title">Odkrijte skrite prihranke pri vzdrževanju brizgalnih strojev</h1>
+            <p class="subtitle">Izračunajte, koliko lahko prihranite s prehodom na preventivno vzdrževanje — validirana metodologija z 12-18% zagotovljenimi prihranki</p>
+        </div>
+        
+        <!-- Event Box -->
+        <div class="event-box">
+            <div class="event-header"></div>
+            <div class="event-content">
+                <div class="event-label">BREZPLAČNI KALKULATOR</div>
+                <h2 class="event-title">Analiza stroškov vzdrževanja za brizganje plastike</h2>
+                
+                <div class="info-box">
+                    <span class="info-box-icon">!</span>
+                    <span class="info-box-text">
+                        <strong>Informativni izračun:</strong> Rezultati temeljijo na povprečnih vrednostih v industriji. Za natančno analizo vašega podjetja priporočamo personalizirano svetovanje.
+                    </span>
+                </div>
+                
+                <!-- Step 1: Equipment -->
+                <div class="form-section active" id="step1">
+                    <h3 class="section-header">Podatki o vaši opremi</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="company">Naziv podjetja (neobvezno)</label>
+                        <input type="text" class="form-input" id="company" placeholder="npr. Plastika d.o.o.">
+                        <div class="form-helper">Za personalizirano poročilo</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="machines">Število brizgalnih strojev</label>
+                        <input type="number" class="form-input" id="machines" value="5" min="1" max="100">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="brand">Prevladujoča znamka strojev</label>
+                        <select class="form-select" id="brand" onchange="updateBrandInfo()">
+                            <option value="arburg">Arburg</option>
+                            <option value="engel">Engel</option>
+                            <option value="krauss">KraussMaffei</option>
+                            <option value="demag">Sumitomo (SHI) Demag</option>
+                            <option value="husky">Husky</option>
+                            <option value="haitian">Haitian</option>
+                            <option value="other">Drugo / Mešano</option>
+                        </select>
+                        <div class="form-helper" id="brand-info"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Prevladujoči tip strojev</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="hydraulic" name="type" value="hydraulic" checked>
+                                <label class="radio-label" for="hydraulic">Hidravlični</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="electric" name="type" value="electric">
+                                <label class="radio-label" for="electric">Električni</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="hybrid" name="type" value="hybrid">
+                                <label class="radio-label" for="hybrid">Hibridni</label>
+                            </div>
+                        </div>
+                        <div class="form-helper">Električni stroji imajo do 50% nižje stroške vzdrževanja</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="tonnage">Povprečna zapiralna sila</label>
+                        <div class="input-group">
+                            <input type="number" class="form-input" id="tonnage" value="250" min="50" max="3000">
+                            <span class="input-suffix">ton</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="age">Povprečna starost strojev</label>
+                        <div class="input-group">
+                            <input type="number" class="form-input" id="age" value="8" min="0" max="30">
+                            <span class="input-suffix">let</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="production-type">Tip proizvodnje</label>
+                        <select class="form-select" id="production-type">
+                            <option value="general">Splošni izdelki</option>
+                            <option value="automotive">Avtomobilska industrija</option>
+                            <option value="medical">Medicinski izdelki</option>
+                            <option value="packaging">Embalaža</option>
+                            <option value="technical">Tehnični deli</option>
+                        </select>
+                    </div>
+                    
+                    <div class="btn-group">
+                        <button class="btn btn-primary" onclick="nextStep()">Nadaljuj na vzdrževanje</button>
+                    </div>
+                </div>
+                
+                <!-- Step 2: Maintenance -->
+                <div class="form-section" id="step2">
+                    <h3 class="section-header">Trenutno stanje vzdrževanja</h3>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="reactive">Delež kurativnega vzdrževanja</label>
+                        <div class="input-group">
+                            <input type="number" class="form-input" id="reactive" value="70" min="0" max="100" onchange="updatePreventive()">
+                            <span class="input-suffix">%</span>
+                        </div>
+                        <div class="form-helper">Preventivno: <span id="preventive">30</span>% | Cilj: 80% preventivno</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="downtime">Letne ure nenapovedanih zastojev</label>
+                        <div class="input-group">
+                            <input type="number" class="form-input" id="downtime" value="240" min="0" max="8760">
+                            <span class="input-suffix">ur/leto</span>
+                        </div>
+                        <div class="form-helper">Povprečje v industriji: 200-300 ur</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="production">Urna vrednost proizvodnje</label>
+                        <div class="input-group">
+                            <input type="number" class="form-input" id="production" value="500" min="0">
+                            <span class="input-suffix">€/h</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="maintenance-cost">Letni stroški vzdrževanja</label>
+                        <div class="input-group">
+                            <input type="number" class="form-input" id="maintenance-cost" value="75000" min="0">
+                            <span class="input-suffix">€</span>
+                        </div>
+                        <div class="form-helper">Vključite delo, rezervne dele in zunanje izvajalce</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="failures">Število večjih okvar letno</label>
+                        <input type="number" class="form-input" id="failures" value="12" min="0">
+                        <div class="form-helper">Okvare, ki zahtevajo več kot 1 uro popravila</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Ali imate sistem CMMS?</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="cmms-yes" name="cmms" value="yes">
+                                <label class="radio-label" for="cmms-yes">Da</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="cmms-no" name="cmms" value="no" checked>
+                                <label class="radio-label" for="cmms-no">Ne</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="cmms-partial" name="cmms" value="partial">
+                                <label class="radio-label" for="cmms-partial">Delno</label>
+                            </div>
+                        </div>
+                        <div class="form-helper">Računalniško podprt sistem upravljanja vzdrževanja</div>
+                    </div>
+                    
+                    <div class="btn-group">
+                        <button class="btn btn-secondary" onclick="prevStep()">Nazaj</button>
+                        <button class="btn btn-primary" onclick="calculateResults()">
+                            Izračunaj prihranke
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Step 3: Results -->
+                <div class="form-section" id="step3">
+                    <h3 class="section-header">Vaši potencialni prihranki</h3>
+                    
+                    <div class="results-grid">
+                        <div class="metric-card">
+                            <div class="metric-label">Donosnost naložbe (ROI)</div>
+                            <div class="metric-value primary" id="roi">245%</div>
+                            <div class="metric-description">Povračilo investicije</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Letni prihranki</div>
+                            <div class="metric-value primary" id="savings">89.250 €</div>
+                            <div class="metric-description">12-18% znižanje stroškov</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Povračilna doba</div>
+                            <div class="metric-value" id="payback">8,9</div>
+                            <div class="metric-description">mesecev</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-label">Zmanjšanje zastojev</div>
+                            <div class="metric-value" id="downtime-reduction">48%</div>
+                            <div class="metric-description">manj nenapovedanih zaustavitev</div>
+                        </div>
+                    </div>
+                    
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Kategorija stroškov</th>
+                                <th>Trenutno (€)</th>
+                                <th>Po optimizaciji (€)</th>
+                                <th>Prihranek (€)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Izguba proizvodnje zaradi zastojev</td>
+                                <td id="downtime-current">120.000</td>
+                                <td id="downtime-future">62.400</td>
+                                <td class="highlight" id="downtime-saving">57.600</td>
+                            </tr>
+                            <tr>
+                                <td>Kurativni popravili</td>
+                                <td id="repair-current">30.000</td>
+                                <td id="repair-future">19.200</td>
+                                <td class="highlight" id="repair-saving">10.800</td>
+                            </tr>
+                            <tr>
+                                <td>Rezervni deli in komponente</td>
+                                <td id="parts-current">18.750</td>
+                                <td id="parts-future">15.938</td>
+                                <td class="highlight" id="parts-saving">2.812</td>
+                            </tr>
+                            <tr>
+                                <td>Delo vzdrževalcev</td>
+                                <td id="labor-current">26.250</td>
+                                <td id="labor-future">23.625</td>
+                                <td class="highlight" id="labor-saving">2.625</td>
+                            </tr>
+                            <tr class="total-row">
+                                <td><strong>SKUPAJ LETNO</strong></td>
+                                <td><strong id="total-current">195.000</strong></td>
+                                <td><strong id="total-future">121.163</strong></td>
+                                <td class="highlight"><strong id="total-saving">73.837</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h3 class="section-header">Implementacijski načrt</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-number">1</div>
+                            <div class="timeline-content">
+                                <h4>Meseci 1-3: Vzpostavitev osnov</h4>
+                                <p>Preventivno vzdrževanje hidravlike, redni pregledi, vodenje evidenc</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-number">2</div>
+                            <div class="timeline-content">
+                                <h4>Meseci 4-6: Napredne metode</h4>
+                                <p>Analiza olja, termografija, vibracijska diagnostika</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-number">3</div>
+                            <div class="timeline-content">
+                                <h4>Meseci 7-12: Optimizacija</h4>
+                                <p>Prediktivno vzdrževanje, doseganje razmerja 80/20</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="btn-group">
+                        <button class="btn btn-secondary" onclick="resetCalculator()">Nov izračun</button>
+                        <button class="btn btn-primary" onclick="scheduleConsultation()">Zahtevaj brezplačno svetovanje</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="logo">VM</div>
+                </div>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">O nas</a>
+                    <a href="#" class="footer-link">Storitve</a>
+                    <a href="#" class="footer-link">Reference</a>
+                    <a href="#" class="footer-link">Kontakt</a>
+                </div>
+            </div>
+            <div class="footer-text">
+                © 2024 Vzdrževanje Strojev d.o.o. | Specializirani za brizganje plastike<br>
+                Vsi izračuni temeljijo na validiranih industrijskih podatkih in najboljših praksah.
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let currentStep = 1;
+        
+        // Brand specific data
+        const brandData = {
+            arburg: {
+                name: 'Arburg',
+                factor: 0.9,
+                info: 'Zanesljivi stroji z SELOGICA krmilnikom. Priporočeno redno vzdrževanje hidravlike in dozirnega vijaka.'
+            },
+            engel: {
+                name: 'Engel',
+                factor: 0.85,
+                info: 'E-mac električni stroji z nižjimi stroški. CC300 krmilnik zahteva redne posodobitve.'
+            },
+            krauss: {
+                name: 'KraussMaffei',
+                factor: 0.88,
+                info: 'APC plus sistem omogoča prediktivno vzdrževanje. BluePower servo hidravlika.'
+            },
+            demag: {
+                name: 'Sumitomo Demag',
+                factor: 0.87,
+                info: 'IntElect serija z odlično energetsko učinkovitostjo. NC5 krmilnik.'
+            },
+            husky: {
+                name: 'Husky',
+                factor: 0.92,
+                info: 'HyPET sistemi za predforme. Posebna pozornost na vroče kanale.'
+            },
+            haitian: {
+                name: 'Haitian',
+                factor: 1.1,
+                info: 'Mars serija z dobrim razmerjem cena/zmogljivost. Redni pregledi hidravlike.'
+            },
+            other: {
+                name: 'Drugo',
+                factor: 1.0,
+                info: 'Prilagojeno vzdrževanje glede na specifike strojev.'
+            }
+        };
+        
+        function updateBrandInfo() {
+            const brand = document.getElementById('brand').value;
+            const info = document.getElementById('brand-info');
+            if (brandData[brand]) {
+                info.textContent = brandData[brand].info;
+            }
+        }
+        
+        function updatePreventive() {
+            const reactive = document.getElementById('reactive').value;
+            document.getElementById('preventive').textContent = 100 - reactive;
+        }
+        
+        function nextStep() {
+            document.getElementById('step1').classList.remove('active');
+            document.getElementById('step2').classList.add('active');
+            window.scrollTo(0, 0);
+        }
+        
+        function prevStep() {
+            document.getElementById('step2').classList.remove('active');
+            document.getElementById('step1').classList.add('active');
+            window.scrollTo(0, 0);
+        }
+        
+        function formatNumber(num) {
+            return num.toLocaleString('sl-SI');
+        }
+        
+        function calculateResults() {
+            // Get values
+            const machines = parseInt(document.getElementById('machines').value);
+            const brand = document.getElementById('brand').value;
+            const type = document.querySelector('input[name="type"]:checked').value;
+            const tonnage = parseInt(document.getElementById('tonnage').value);
+            const age = parseInt(document.getElementById('age').value);
+            const productionType = document.getElementById('production-type').value;
+            const reactive = parseInt(document.getElementById('reactive').value);
+            const downtime = parseInt(document.getElementById('downtime').value);
+            const production = parseInt(document.getElementById('production').value);
+            const maintenanceCost = parseInt(document.getElementById('maintenance-cost').value);
+            const failures = parseInt(document.getElementById('failures').value);
+            const hasCMMS = document.querySelector('input[name="cmms"]:checked').value;
+            
+            // Calculate factors
+            let typeFactor = 1;
+            if (type === 'electric') typeFactor = 0.5;
+            if (type === 'hybrid') typeFactor = 0.75;
+            
+            const brandFactor = brandData[brand].factor;
+            
+            let productionFactor = 1;
+            if (productionType === 'medical') productionFactor = 1.5;
+            if (productionType === 'automotive') productionFactor = 1.2;
+            if (productionType === 'packaging') productionFactor = 0.9;
+            if (productionType === 'technical') productionFactor = 1.1;
+            
+            let cmmsFactor = 1;
+            if (hasCMMS === 'yes') cmmsFactor = 0.8;
+            if (hasCMMS === 'partial') cmmsFactor = 0.9;
+            
+            // Calculate improvements
+            const improvement = (reactive - 20) / 100;
+            const baseSavings = 12 + improvement * 6;
+            const adjustedSavings = baseSavings * typeFactor * brandFactor * productionFactor;
+            
+            // Calculate specific savings
+            const downtimeReduction = downtime * improvement * 0.7;
+            const downtimeCostCurrent = downtime * production;
+            const downtimeCostFuture = (downtime - downtimeReduction) * production;
+            const downtimeSaving = downtimeCostCurrent - downtimeCostFuture;
+            
+            const repairCurrent = maintenanceCost * 0.4;
+            const repairFuture = repairCurrent * (1 - improvement * 0.5) * brandFactor;
+            const repairSaving = repairCurrent - repairFuture;
+            
+            const partsCurrent = maintenanceCost * 0.25;
+            const partsFuture = partsCurrent * 0.85 * typeFactor;
+            const partsSaving = partsCurrent - partsFuture;
+            
+            const laborCurrent = maintenanceCost * 0.35;
+            const laborFuture = laborCurrent * 0.9 * cmmsFactor;
+            const laborSaving = laborCurrent - laborFuture;
+            
+            const totalSaving = downtimeSaving + repairSaving + partsSaving + laborSaving;
+            const investment = machines * 2000 + 10000;
+            const roi = ((totalSaving / investment) * 100).toFixed(0);
+            const payback = (investment / (totalSaving / 12)).toFixed(1);
+            const downtimeReductionPercent = ((downtimeReduction / downtime) * 100).toFixed(0);
+            
+            // Update display
+            document.getElementById('roi').textContent = roi + '%';
+            document.getElementById('savings').textContent = formatNumber(Math.round(totalSaving)) + ' €';
+            document.getElementById('payback').textContent = payback.replace('.', ',');
+            document.getElementById('downtime-reduction').textContent = downtimeReductionPercent + '%';
+            
+            // Update table
+            document.getElementById('downtime-current').textContent = formatNumber(Math.round(downtimeCostCurrent));
+            document.getElementById('downtime-future').textContent = formatNumber(Math.round(downtimeCostFuture));
+            document.getElementById('downtime-saving').textContent = formatNumber(Math.round(downtimeSaving));
+            
+            document.getElementById('repair-current').textContent = formatNumber(Math.round(repairCurrent));
+            document.getElementById('repair-future').textContent = formatNumber(Math.round(repairFuture));
+            document.getElementById('repair-saving').textContent = formatNumber(Math.round(repairSaving));
+            
+            document.getElementById('parts-current').textContent = formatNumber(Math.round(partsCurrent));
+            document.getElementById('parts-future').textContent = formatNumber(Math.round(partsFuture));
+            document.getElementById('parts-saving').textContent = formatNumber(Math.round(partsSaving));
+            
+            document.getElementById('labor-current').textContent = formatNumber(Math.round(laborCurrent));
+            document.getElementById('labor-future').textContent = formatNumber(Math.round(laborFuture));
+            document.getElementById('labor-saving').textContent = formatNumber(Math.round(laborSaving));
+            
+            const totalCurrent = downtimeCostCurrent + repairCurrent + partsCurrent + laborCurrent;
+            const totalFuture = downtimeCostFuture + repairFuture + partsFuture + laborFuture;
+            
+            document.getElementById('total-current').textContent = formatNumber(Math.round(totalCurrent));
+            document.getElementById('total-future').textContent = formatNumber(Math.round(totalFuture));
+            document.getElementById('total-saving').textContent = formatNumber(Math.round(totalSaving));
+            
+            // Show results
+            document.getElementById('step2').classList.remove('active');
+            document.getElementById('step3').classList.add('active');
+            window.scrollTo(0, 0);
+        }
+        
+        function resetCalculator() {
+            document.getElementById('step3').classList.remove('active');
+            document.getElementById('step1').classList.add('active');
+            window.scrollTo(0, 0);
+        }
+        
+        function scheduleConsultation() {
+            const company = document.getElementById('company').value || 'Vaše podjetje';
+            alert(`Hvala za interes! Specialist za vzdrževanje brizgalnih strojev vas bo kontaktiral v 24 urah.\n\nPodjetje: ${company}\n\nZa takojšnji kontakt: 01 234 56 78`);
+        }
+        
+        // Initialize
+        updateBrandInfo();
+    </script>
+</body>
+</html>
