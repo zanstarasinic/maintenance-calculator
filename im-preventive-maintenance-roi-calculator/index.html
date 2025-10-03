@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="sl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalkulator prihrankov pri vzdrževanju | Brizganje plastike</title>
+    <title>Kalkulator prihrankov pri vzdrževanju | Promigra d.o.o.</title>
     <style>
         * {
             margin: 0;
@@ -15,8 +14,8 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
             line-height: 1.6;
-            color: #0A2540;
-            background: #FFFFFF;
+            color: #0a2540;
+            background: #ffffff;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
@@ -39,16 +38,10 @@
         }
         
         .logo {
-            width: 60px;
-            height: 24px;
-            background: #072AC8;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 14px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #072AC6;
+            letter-spacing: 0.5px;
         }
         
         .main-title {
@@ -56,47 +49,50 @@
             font-weight: bold;
             letter-spacing: -1px;
             line-height: 1.1;
-            color: #0A2540;
+            color: #0a2540;
             margin-bottom: 28px;
         }
         
         .subtitle {
             font-size: 22px;
             line-height: 1.5;
-            color: #3F4B66;
+            color: #425466;
             margin-bottom: 36px;
         }
         
-        /* Event box - Updated colors */
+        /* Event box */
         .event-box {
             margin: 0 36px 36px;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: 1px solid #e6ebf1;
         }
         
         .event-header {
-            height: 8px;
-            background: linear-gradient(90deg, #072AC8 0%, #1E96FC 100%);
+            height: 4px;
+            background: #072AC6;
         }
         
         .event-content {
-            background: #F6F9FC;
+            background: #fafbfc;
             padding: 36px;
         }
         
         .event-label {
-            font-size: 15px;
-            font-weight: bold;
-            color: #072AC8;
+            font-size: 13px;
+            font-weight: 600;
+            color: #072AC6;
             margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .event-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #0A2540;
-            margin-bottom: 20px;
+            font-size: 28px;
+            font-weight: 700;
+            color: #0a2540;
+            margin-bottom: 24px;
             line-height: 1.3;
         }
         
@@ -112,12 +108,12 @@
         }
         
         .section-header {
-            font-size: 23px;
-            font-weight: bold;
-            color: #0A2540;
-            margin-bottom: 24px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid #A2D6F9;
+            font-size: 24px;
+            font-weight: 700;
+            color: #0a2540;
+            margin-bottom: 28px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e6ebf1;
         }
         
         /* Form elements */
@@ -129,31 +125,31 @@
             display: block;
             font-size: 15px;
             font-weight: 600;
-            color: #0A2540;
-            margin-bottom: 8px;
+            color: #0a2540;
+            margin-bottom: 10px;
         }
         
         .form-input, .form-select {
             width: 100%;
-            padding: 12px 16px;
+            padding: 14px 16px;
             font-size: 16px;
-            border: 1px solid #E6E9EC;
-            border-radius: 6px;
+            border: 1px solid #e6ebf1;
+            border-radius: 8px;
             background: white;
-            color: #0A2540;
-            transition: all 0.15s ease;
+            color: #0a2540;
+            transition: all 0.2s ease;
         }
         
         .form-input:focus, .form-select:focus {
             outline: none;
-            border-color: #1E96FC;
-            box-shadow: 0 0 0 2px rgba(30, 150, 252, 0.2);
+            border-color: #072AC6;
+            box-shadow: 0 0 0 3px rgba(7, 42, 198, 0.1);
         }
         
         .form-helper {
             font-size: 14px;
-            color: #8792A2;
-            margin-top: 6px;
+            color: #6b7c93;
+            margin-top: 8px;
         }
         
         /* Input with suffix */
@@ -166,7 +162,7 @@
             right: 16px;
             top: 50%;
             transform: translateY(-50%);
-            color: #8792A2;
+            color: #8898aa;
             font-size: 15px;
             pointer-events: none;
         }
@@ -193,57 +189,57 @@
         
         .radio-label {
             display: block;
-            padding: 12px 16px;
+            padding: 14px 16px;
             background: white;
-            border: 1px solid #E6E9EC;
-            border-radius: 6px;
+            border: 1px solid #e6ebf1;
+            border-radius: 8px;
             text-align: center;
             cursor: pointer;
-            transition: all 0.15s ease;
+            transition: all 0.2s ease;
             font-size: 15px;
             font-weight: 500;
         }
         
         .radio-option input:checked + .radio-label {
-            background: linear-gradient(135deg, rgba(162, 214, 249, 0.1) 0%, rgba(30, 150, 252, 0.1) 100%);
-            border-color: #1E96FC;
-            color: #072AC8;
-            box-shadow: 0 0 0 1px #1E96FC;
+            background: #072AC6;
+            border-color: #072AC6;
+            color: white;
+            box-shadow: 0 2px 4px rgba(7, 42, 198, 0.2);
         }
         
         /* Button */
         .btn {
-            padding: 12px 24px;
+            padding: 14px 28px;
             font-size: 15px;
-            font-weight: bold;
-            letter-spacing: 0.2px;
-            border-radius: 18px;
+            font-weight: 600;
+            border-radius: 8px;
             border: none;
             cursor: pointer;
-            transition: all 0.15s ease;
+            transition: all 0.2s ease;
             display: inline-block;
             text-decoration: none;
         }
         
         .btn-primary {
-            background: linear-gradient(135deg, #072AC8 0%, #1E96FC 100%);
+            background: #072AC6;
             color: white;
         }
         
         .btn-primary:hover {
+            background: #0520a8;
             transform: translateY(-1px);
-            box-shadow: 0 7px 14px rgba(7, 42, 200, 0.3);
+            box-shadow: 0 4px 12px rgba(7, 42, 198, 0.25);
         }
         
         .btn-secondary {
             background: white;
-            color: #072AC8;
-            border: 2px solid #1E96FC;
+            color: #072AC6;
+            border: 2px solid #e6ebf1;
         }
         
         .btn-secondary:hover {
-            background: #A2D6F9;
-            border-color: #072AC8;
+            background: #f6f9fc;
+            border-color: #072AC6;
         }
         
         .btn-group {
@@ -251,7 +247,7 @@
             gap: 12px;
             margin-top: 36px;
             padding-top: 24px;
-            border-top: 1px solid #A2D6F9;
+            border-top: 1px solid #e6ebf1;
         }
         
         .btn-group .btn {
@@ -262,15 +258,16 @@
         /* Results section */
         .results-container {
             padding: 36px;
-            background: linear-gradient(135deg, rgba(162, 214, 249, 0.1) 0%, rgba(252, 243, 0, 0.05) 100%);
+            background: #f6f9fc;
             margin: 36px;
-            border-radius: 8px;
+            border-radius: 12px;
+            border: 1px solid #e6ebf1;
         }
         
         .results-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
+            gap: 20px;
             margin-bottom: 36px;
         }
         
@@ -278,19 +275,14 @@
             background: white;
             padding: 24px;
             border-radius: 8px;
-            border: 1px solid #A2D6F9;
+            border: 1px solid #e6ebf1;
             position: relative;
-            overflow: hidden;
+            transition: all 0.2s ease;
         }
         
-        .metric-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #FCF300 0%, #FFC600 100%);
+        .metric-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transform: translateY(-2px);
         }
         
         .metric-label {
@@ -298,56 +290,70 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            color: #072AC8;
-            margin-bottom: 8px;
+            color: #6b7c93;
+            margin-bottom: 12px;
         }
         
         .metric-value {
             font-size: 36px;
-            font-weight: bold;
-            color: #0A2540;
+            font-weight: 700;
+            color: #0a2540;
             margin-bottom: 4px;
         }
         
         .metric-value.primary {
-            background: linear-gradient(135deg, #072AC8 0%, #1E96FC 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #072AC6;
         }
         
         .metric-description {
             font-size: 14px;
-            color: #3F4B66;
+            color: #6b7c93;
         }
         
         /* Table */
         .data-table {
             width: 100%;
             background: white;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
             margin-bottom: 36px;
-            border: 1px solid #A2D6F9;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border: 1px solid #e6ebf1;
         }
         
         .data-table th {
-            background: linear-gradient(135deg, #A2D6F9 0%, rgba(252, 243, 0, 0.2) 100%);
-            padding: 12px 16px;
+            background: linear-gradient(180deg, #f8f9fb 0%, #f3f4f7 100%);
+            padding: 16px 20px;
             text-align: left;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #072AC8;
-            border-bottom: 1px solid #A2D6F9;
+            color: #6b7c93;
+            border-bottom: 2px solid #e6ebf1;
+        }
+        
+        .data-table th:nth-child(2),
+        .data-table th:nth-child(3),
+        .data-table th:nth-child(4) {
+            text-align: right;
         }
         
         .data-table td {
-            padding: 16px;
+            padding: 18px 20px;
             font-size: 15px;
-            color: #0A2540;
-            border-bottom: 1px solid #F3F4F6;
+            color: #0a2540;
+            border-bottom: 1px solid #f0f2f4;
+        }
+        
+        .data-table td:nth-child(2),
+        .data-table td:nth-child(3),
+        .data-table td:nth-child(4) {
+            text-align: right;
+            font-family: 'SF Mono', Monaco, 'Courier New', monospace;
+            font-weight: 500;
+        }
+        
+        .data-table tr:hover:not(.total-row) {
+            background: #fafbfc;
         }
         
         .data-table tr:last-child td {
@@ -355,20 +361,38 @@
         }
         
         .data-table .highlight {
-            color: #072AC8;
-            font-weight: 600;
+            color: #22c55e;
+            font-weight: 700;
+            position: relative;
+        }
+        
+        .data-table .highlight::before {
+            content: '+';
+            margin-right: 2px;
         }
         
         .data-table .total-row {
             font-weight: bold;
-            background: linear-gradient(135deg, rgba(162, 214, 249, 0.2) 0%, rgba(252, 243, 0, 0.1) 100%);
+            background: linear-gradient(180deg, #072AC6 0%, #0520a8 100%);
+            color: white;
         }
         
-        /* Info box - Updated with warning color */
+        .data-table .total-row td {
+            padding: 22px 20px;
+            font-size: 17px;
+            color: white;
+            border-bottom: none;
+        }
+        
+        .data-table .total-row .highlight {
+            color: #a3f5a3;
+        }
+        
+        /* Info box */
         .info-box {
-            background: linear-gradient(135deg, rgba(255, 198, 0, 0.1) 0%, rgba(252, 243, 0, 0.1) 100%);
-            border: 1px solid #FFC600;
-            border-radius: 6px;
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            border-radius: 8px;
             padding: 16px;
             margin-bottom: 24px;
         }
@@ -377,7 +401,7 @@
             display: inline-block;
             width: 20px;
             height: 20px;
-            background: #FFC600;
+            background: #ea580c;
             color: white;
             border-radius: 50%;
             text-align: center;
@@ -389,7 +413,7 @@
         
         .info-box-text {
             font-size: 14px;
-            color: #856404;
+            color: #9a3412;
             line-height: 1.5;
         }
         
@@ -411,13 +435,13 @@
             top: 40px;
             width: 1px;
             height: calc(100% + 8px);
-            background: #A2D6F9;
+            background: #e6ebf1;
         }
         
         .timeline-number {
             width: 32px;
             height: 32px;
-            background: linear-gradient(135deg, #072AC8 0%, #1E96FC 100%);
+            background: #072AC6;
             color: white;
             border-radius: 50%;
             display: flex;
@@ -434,20 +458,21 @@
         .timeline-content h4 {
             font-size: 16px;
             font-weight: 600;
-            color: #072AC8;
-            margin-bottom: 4px;
+            color: #0a2540;
+            margin-bottom: 6px;
         }
         
         .timeline-content p {
             font-size: 14px;
-            color: #3F4B66;
+            color: #6b7c93;
         }
         
         /* Footer */
         .footer {
-            background: linear-gradient(135deg, #A2D6F9 0%, rgba(252, 243, 0, 0.1) 100%);
+            background: #f6f9fc;
             padding: 48px 36px 60px;
             margin-top: 60px;
+            border-top: 1px solid #e6ebf1;
         }
         
         .footer-content {
@@ -455,12 +480,15 @@
             justify-content: space-between;
             align-items: center;
             padding-bottom: 36px;
-            border-bottom: 1px solid rgba(7, 42, 200, 0.2);
+            border-bottom: 1px solid #e6ebf1;
             margin-bottom: 24px;
         }
         
         .footer-logo {
-            width: 60px;
+            font-size: 20px;
+            font-weight: 600;
+            color: #072AC6;
+            letter-spacing: 0.5px;
         }
         
         .footer-links {
@@ -469,20 +497,20 @@
         }
         
         .footer-link {
-            color: #072AC8;
+            color: #6b7c93;
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
+            transition: color 0.2s ease;
         }
         
         .footer-link:hover {
-            color: #1E96FC;
-            text-decoration: underline;
+            color: #072AC6;
         }
         
         .footer-text {
             font-size: 12px;
-            color: #3F4B66;
+            color: #8898aa;
             line-height: 1.5;
         }
         
@@ -525,8 +553,8 @@
             display: inline-block;
             width: 16px;
             height: 16px;
-            border: 2px solid #A2D6F9;
-            border-top: 2px solid #072AC8;
+            border: 2px solid #e6ebf1;
+            border-top: 2px solid #072AC6;
             border-radius: 50%;
             animation: spin 1s linear infinite;
             margin-left: 8px;
@@ -536,13 +564,6 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        
-        /* Accent highlights */
-        .accent-highlight {
-            background: linear-gradient(135deg, transparent 0%, rgba(252, 243, 0, 0.2) 50%, transparent 100%);
-            padding: 2px 6px;
-            border-radius: 3px;
-        }
     </style>
 </head>
 <body>
@@ -550,7 +571,7 @@
         <!-- Header -->
         <div class="header">
             <div class="logo-container">
-                <div class="logo">VM</div>
+                <div class="logo">PROMIGRA</div>
             </div>
             <h1 class="main-title">Odkrijte skrite prihranke pri vzdrževanju brizgalnih strojev</h1>
             <p class="subtitle">Izračunajte, koliko lahko prihranite s prehodom na preventivno vzdrževanje — validirana metodologija z 12-18% zagotovljenimi prihranki</p>
@@ -560,7 +581,7 @@
         <div class="event-box">
             <div class="event-header"></div>
             <div class="event-content">
-                <div class="event-label">BREZPLAČNI KALKULATOR</div>
+                <div class="event-label">Brezplačni kalkulator</div>
                 <h2 class="event-title">Analiza stroškov vzdrževanja za brizganje plastike</h2>
                 
                 <div class="info-box">
@@ -646,7 +667,7 @@
                     </div>
                     
                     <div class="btn-group">
-                        <button class="btn btn-primary" onclick="nextStep()">Nadaljuj na vzdrževanje</button>
+                        <button class="btn btn-primary" onclick="nextStep()">Nadaljuj na vzdrževanje →</button>
                     </div>
                 </div>
                 
@@ -715,7 +736,7 @@
                     </div>
                     
                     <div class="btn-group">
-                        <button class="btn btn-secondary" onclick="prevStep()">Nazaj</button>
+                        <button class="btn btn-secondary" onclick="prevStep()">← Nazaj</button>
                         <button class="btn btn-primary" onclick="calculateResults()">
                             Izračunaj prihranke
                         </button>
@@ -766,7 +787,7 @@
                                 <td class="highlight" id="downtime-saving">57.600</td>
                             </tr>
                             <tr>
-                                <td>Kurativni popravili</td>
+                                <td>Kurativna popravila</td>
                                 <td id="repair-current">30.000</td>
                                 <td id="repair-future">19.200</td>
                                 <td class="highlight" id="repair-saving">10.800</td>
@@ -828,9 +849,7 @@
         <!-- Footer -->
         <div class="footer">
             <div class="footer-content">
-                <div class="footer-logo">
-                    <div class="logo">VM</div>
-                </div>
+                <div class="footer-logo">PROMIGRA d.o.o.</div>
                 <div class="footer-links">
                     <a href="#" class="footer-link">O nas</a>
                     <a href="#" class="footer-link">Storitve</a>
@@ -839,7 +858,7 @@
                 </div>
             </div>
             <div class="footer-text">
-                © 2024 Vzdrževanje Strojev d.o.o. | Specializirani za brizganje plastike<br>
+                © 2025 Promigra d.o.o. | Specializirani za brizganje plastike<br>
                 Vsi izračuni temeljijo na validiranih industrijskih podatkih in najboljših praksah.
             </div>
         </div>
