@@ -840,7 +840,7 @@
                     
                     <div class="btn-group">
                         <button class="btn btn-secondary" onclick="resetCalculator()">Nov izračun</button>
-                        <button class="btn btn-primary" onclick="scheduleConsultation()">Zahtevaj brezplačno svetovanje</button>
+                        <a href="mailto:tvoj.email@domena.si?subject=Povpraševanje%20za%20demo" class="btn btn-primary">Zahtevaj brezplačno predstavitev</a>
                     </div>
                 </div>
             </div>
@@ -1030,11 +1030,6 @@
             document.getElementById('step3').classList.remove('active');
             document.getElementById('step1').classList.add('active');
             window.scrollTo(0, 0);
-        }
-        
-        function scheduleConsultation() {
-            const company = document.getElementById('company').value || 'Vaše podjetje';
-            alert(`Hvala za interes! Specialist za vzdrževanje brizgalnih strojev vas bo kontaktiral v 24 urah.\n\nPodjetje: ${company}\n\nZa takojšnji kontakt: 01 234 56 78`);
         }
         
         // Initialize
