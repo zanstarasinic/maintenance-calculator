@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manufacturing Digitalization ROI Calculator — Promigra</title>
+    <meta name="description" content="Calculate how much your manufacturing company can save by digitalizing production. Free ROI calculator based on verified industry benchmarks for production scheduling, OEE, CMMS, shop floor and quality management.">
+    <meta name="keywords" content="manufacturing ROI calculator, production digitalization savings, OEE improvement, CMMS ROI, production scheduling software, manufacturing software ROI, Industry 4.0 calculator, preventive maintenance savings">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Promigra d.o.o.">
+    <link rel="canonical" href="https://tools.promigra.com/roi-calculator/">
+    <meta property="og:title" content="Manufacturing Digitalization ROI Calculator — Promigra">
+    <meta property="og:description" content="Free calculator: estimate annual savings from digitalizing production scheduling, OEE tracking, maintenance and shop floor management. Based on verified industry benchmarks.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tools.promigra.com/roi-calculator/">
+    <meta property="og:site_name" content="Promigra">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Manufacturing ROI Calculator — Promigra">
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Manufacturing Digitalization ROI Calculator","description":"Calculate potential savings from digitalizing manufacturing processes. Based on verified industry benchmarks.","url":"https://tools.promigra.com/roi-calculator/","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"creator":{"@type":"Organization","name":"Promigra d.o.o.","url":"https://promigra.com"}}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How much can manufacturing companies save with digitalization?","acceptedAnswer":{"@type":"Answer","text":"Mid-size manufacturing companies (50–250 employees) typically save between €40,000 and €250,000 annually by digitalizing core production processes. The largest savings come from reduced unplanned downtime (15–20% reduction), elimination of manual scheduling and reporting (50–65% time reduction), and fewer quality incidents (20–30% reduction)."}},{"@type":"Question","name":"What is the typical ROI of manufacturing software like CMMS or MES?","acceptedAnswer":{"@type":"Answer","text":"According to industry research, CMMS implementations achieve 300–600% ROI within 18–36 months. Companies shifting from reactive to preventive maintenance save 12–18% on maintenance costs (AFIM/Reliable Plant). Predictive maintenance can reduce downtime by 30–50% and extend machine life by 20–40% (PwC)."}},{"@type":"Question","name":"How long does it take to see results from manufacturing digitalization?","acceptedAnswer":{"@type":"Answer","text":"Cloud-based manufacturing solutions can be deployed in 4–12 weeks. Most companies report measurable improvements within the first 30–90 days. Full ROI realization typically occurs within 12–18 months."}}]}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        :root{--white:#fff;--bg:#f8f9fb;--bg-card:#fff;--border:#e2e5eb;--border-lt:#eef0f4;--text:#1a1f2e;--text2:#5a6178;--text3:#8b91a5;--pri:#1a56db;--pri-lt:#ebf0fe;--pri-bd:#c5d5f8;--green:#0d8a5e;--green-lt:#e8f7f0;--green-bd:#b5e2d0;--amber:#b45309;--amber-lt:#fef3e2;--amber-bd:#f5d9a8;--r:8px;--rl:12px;--sh:0 2px 8px rgba(0,0,0,.06),0 1px 3px rgba(0,0,0,.04);--shs:0 1px 3px rgba(0,0,0,.04);--f:'IBM Plex Sans',-apple-system,sans-serif;--m:'IBM Plex Mono',monospace}
+        html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+        body{font-family:var(--f);background:var(--bg);color:var(--text);line-height:1.6;font-size:15px}
+        .c{max-width:720px;margin:0 auto;padding:0 20px}
+        .hd{background:var(--white);border-bottom:1px solid var(--border);padding:16px 0;position:sticky;top:0;z-index:100}
+        .hd-in{display:flex;align-items:center;justify-content:space-between}
+        .logo{font-weight:700;font-size:16px;color:var(--text);text-decoration:none;letter-spacing:-.3px}
+        .lt{display:flex;gap:2px;background:var(--bg);border-radius:6px;padding:2px}
+        .lb{padding:5px 12px;border:none;border-radius:4px;font-family:var(--f);font-size:13px;font-weight:500;color:var(--text3);background:0 0;cursor:pointer;transition:.15s}
+        .lb.on{background:var(--white);color:var(--text);box-shadow:var(--shs)}
+        main{padding:40px 0 80px}
+        .hero{margin-bottom:36px}
+        h1{font-size:clamp(24px,4vw,32px);font-weight:700;line-height:1.25;letter-spacing:-.5px;margin-bottom:12px}
+        .hd2{font-size:15px;color:var(--text2);line-height:1.65;max-width:560px}
+        .sb{display:flex;align-items:center;margin-bottom:32px}
+        .si{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--text3);white-space:nowrap}
+        .si .n{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:600;border:1.5px solid var(--border);background:var(--white);color:var(--text3);transition:.2s}
+        .si.on .n{background:var(--pri);border-color:var(--pri);color:#fff}
+        .si.on{color:var(--text)}
+        .si.ok .n{background:var(--green);border-color:var(--green);color:#fff}
+        .sl{flex:1;height:1px;background:var(--border);margin:0 12px}
+        .cd{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);padding:28px;box-shadow:var(--shs)}
+        .cd+.cd{margin-top:16px}
+        .ct{font-size:16px;font-weight:600;margin-bottom:20px}
+        .fg{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+        .fg2{display:flex;flex-direction:column}
+        .fg2.full{grid-column:1/-1}
+        .fg2 label{display:block;font-size:13px;font-weight:500;color:var(--text2);margin-bottom:5px}
+        .fg2 label .h{font-weight:400;color:var(--text3)}
+        .ir{display:flex;border:1px solid var(--border);border-radius:var(--r);background:var(--white);transition:.15s}
+        .ir:focus-within{border-color:var(--pri);box-shadow:0 0 0 3px var(--pri-lt)}
+        .ir input{flex:1;padding:10px 12px;border:none;outline:none;font-family:var(--m);font-size:14px;color:var(--text);background:0 0;min-width:0}
+        .ir input::placeholder{color:var(--text3);font-family:var(--f);font-size:13px}
+        .ir .u{display:flex;align-items:center;padding:0 12px;font-size:12px;font-weight:500;color:var(--text3);background:var(--bg);border-left:1px solid var(--border);white-space:nowrap;border-radius:0 var(--r) var(--r) 0}
+        .fh{font-size:12px;color:var(--text3);margin-top:4px}
+        .fg2 select{padding:10px 12px;border:1px solid var(--border);border-radius:var(--r);font-family:var(--f);font-size:14px;color:var(--text);background:var(--white);outline:none;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238b91a5' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;transition:.15s}
+        .fg2 select:focus{border-color:var(--pri);box-shadow:0 0 0 3px var(--pri-lt)}
+        .rg{display:flex;gap:8px;flex-wrap:wrap}
+        .rp{padding:8px 16px;border:1px solid var(--border);border-radius:var(--r);font-size:13px;font-weight:500;color:var(--text2);background:var(--white);cursor:pointer;transition:.15s;user-select:none}
+        .rp:hover{border-color:var(--pri)}
+        .rp.on{background:var(--pri-lt);border-color:var(--pri);color:var(--pri)}
+        .rp input{display:none}
+        .ml2{display:flex;flex-direction:column;gap:8px}
+        .mi{display:flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid var(--border);border-radius:var(--r);cursor:pointer;transition:.15s;user-select:none}
+        .mi:hover{border-color:var(--pri-bd);background:var(--pri-lt)}
+        .mi.on{border-color:var(--pri);background:var(--pri-lt)}
+        .mi input{display:none}
+        .mi .cb{width:18px;height:18px;flex-shrink:0;border:1.5px solid var(--border);border-radius:4px;display:grid;place-items:center;transition:.15s}
+        .mi.on .cb{background:var(--pri);border-color:var(--pri)}
+        .mi .cb svg{width:11px;height:11px;opacity:0;transition:.1s}
+        .mi.on .cb svg{opacity:1}
+        .mi .mn{font-size:14px;font-weight:500}
+        .mi .md{font-size:12px;color:var(--text3);margin-left:auto}
+        .srow{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+        .sv{font-family:var(--m);font-size:14px;font-weight:600;color:var(--pri)}
+        input[type=range]{-webkit-appearance:none;width:100%;height:4px;border-radius:2px;background:var(--border);outline:none}
+        input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--white);border:2px solid var(--pri);cursor:pointer;box-shadow:var(--shs)}
+        input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--white);border:2px solid var(--pri);cursor:pointer}
+        .nt{display:flex;gap:10px;padding:14px 16px;border-radius:var(--r);font-size:13px;line-height:1.55;margin-bottom:24px;background:var(--pri-lt);border:1px solid var(--pri-bd);color:var(--text2)}
+        .br{display:flex;justify-content:space-between;gap:12px;margin-top:24px}
+        .btn{padding:11px 24px;border-radius:var(--r);font-family:var(--f);font-size:14px;font-weight:600;cursor:pointer;transition:.15s;border:none;display:inline-flex;align-items:center;gap:6px}
+        .bp{background:var(--pri);color:#fff}
+        .bp:hover{background:#1548be}
+        .bs{background:var(--white);color:var(--text2);border:1px solid var(--border)}
+        .bs:hover{background:var(--bg)}
+        .sp{display:none;animation:fi .3s ease}
+        .sp.on{display:block}
+        @keyframes fi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+        .rh{text-align:center;padding:32px 20px;background:var(--green-lt);border:1px solid var(--green-bd);border-radius:var(--rl);margin-bottom:20px}
+        .rh .rl{font-size:14px;color:var(--text2);margin-bottom:6px}
+        .rh .rv{font-family:var(--f);font-size:clamp(32px,6vw,48px);font-weight:700;color:var(--green);line-height:1.1;letter-spacing:-0.5px}
+        .rh .rs{font-size:14px;color:var(--text3);margin-top:4px}
+        .mr{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
+        .mb{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--r);padding:16px;text-align:center}
+        .mb .mv{font-family:var(--m);font-size:22px;font-weight:700;margin-bottom:2px}
+        .mb .ml{font-size:12px;color:var(--text3)}
+        .rt{width:100%;border-collapse:collapse;font-size:14px}
+        .rt th{text-align:left;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;color:var(--text3);padding:8px 12px;border-bottom:2px solid var(--border)}
+        .rt th:nth-child(2),.rt th:nth-child(3){text-align:right}
+        .rt td{padding:11px 12px;border-bottom:1px solid var(--border-lt);color:var(--text2)}
+        .rt td:nth-child(2){text-align:right;font-family:var(--m);font-size:13px;color:var(--text3)}
+        .rt td:nth-child(3){text-align:right;font-family:var(--m);font-size:13px;font-weight:600;color:var(--green)}
+        .rt tr:last-child td{border-bottom:none;font-weight:600;color:var(--text);border-top:2px solid var(--border)}
+        .rt tr:last-child td:nth-child(3){color:var(--green);font-size:15px}
+        .gb{background:var(--amber-lt);border:1px solid var(--amber-bd);border-radius:var(--r);padding:16px 18px;margin-top:20px}
+        .gb .gt{font-size:13px;font-weight:600;color:var(--amber);margin-bottom:4px}
+        .gb .gd{font-size:13px;color:var(--text2);line-height:1.55}
+        .gb a{color:var(--amber)}
+        .cc{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--rl);padding:28px;text-align:center;margin-top:20px}
+        .cc h3{font-size:17px;font-weight:600;margin-bottom:6px}
+        .cc p{font-size:13px;color:var(--text2);margin-bottom:20px}
+        .cr{display:flex;gap:8px;max-width:400px;margin:0 auto}
+        .cr input{flex:1;padding:10px 12px;border:1px solid var(--border);border-radius:var(--r);font-family:var(--f);font-size:14px;color:var(--text);outline:none}
+        .cr input:focus{border-color:var(--pri)}
+        .cr input::placeholder{color:var(--text3)}
+        .cs{font-size:11px;color:var(--text3);margin-top:10px}
+        .co{display:none;color:var(--green);font-size:14px;font-weight:500;margin-top:12px}
+        .co.show{display:block}
+        .meth{margin-top:32px;border-top:1px solid var(--border);padding-top:24px}
+        .meth summary{font-size:13px;font-weight:600;color:var(--text3);cursor:pointer;list-style:none}
+        .meth summary::-webkit-details-marker{display:none}
+        .meth summary::before{content:'▸ '}
+        .meth[open] summary::before{content:'▾ '}
+        .mc{margin-top:14px;font-size:13px;color:var(--text3);line-height:1.7}
+        .mc p{margin-bottom:10px}
+        .mc strong{color:var(--text2)}
+        .ft{margin-top:48px;padding:20px 0;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--text3);flex-wrap:wrap;gap:8px}
+        .ft a{color:var(--pri);text-decoration:none}
+        .ft a:hover{text-decoration:underline}
+        @media(max-width:600px){.fg{grid-template-columns:1fr}.mr{grid-template-columns:1fr}.sb .si span:not(.n){display:none}.sl{margin:0 8px}.cd{padding:20px}.cr{flex-direction:column}main{padding:28px 0 60px}}
+        .val-err{font-size:13px;color:#dc2626;background:#fef2f2;border:1px solid #fecaca;border-radius:var(--r);padding:10px 14px;margin-bottom:16px;display:none;animation:fi .2s ease}
+        .val-err.show{display:flex;align-items:center;gap:8px}
+        .ir.err{border-color:#dc2626}
+        .ir.err:focus-within{border-color:#dc2626;box-shadow:0 0 0 3px #fef2f2}
+        @media print{.hd,.br,.cc,.ft,.meth{display:none}.sp{display:block!important}.sp:not(#s4){display:none!important}#s4{display:block!important}}
+    </style>
+</head>
+<body>
+<header class="hd"><div class="c hd-in"><a href="https://promigra.com" class="logo" target="_blank" rel="noopener">PROMIGRA</a><div class="lt"><button class="lb on" onclick="setLang('en')">EN</button><button class="lb" onclick="setLang('sl')">SL</button></div></div></header>
+<main><div class="c">
+<div class="hero">
+    <h1 data-en="Calculate Your Manufacturing Digitalization Savings" data-sl="Izračunajte prihranke z digitalizacijo proizvodnje"></h1>
+    <p class="hd2" data-en="Estimate how much your company could save annually by digitalizing production processes. Based on verified industry benchmarks from McKinsey, Deloitte, PwC and AFIM." data-sl="Ocenite, koliko bi vaše podjetje lahko letno prihranilo z digitalizacijo proizvodnih procesov. Temelji na preverjenih panožnih merilih McKinsey, Deloitte, PwC in AFIM."></p>
+</div>
+<div class="sb">
+    <div class="si on" id="si1"><span class="n">1</span><span data-en="Company" data-sl="Podjetje"></span></div>
+    <div class="sl"></div>
+    <div class="si" id="si2"><span class="n">2</span><span data-en="Current State" data-sl="Trenutno stanje"></span></div>
+    <div class="sl"></div>
+    <div class="si" id="si3"><span class="n">3</span><span data-en="Modules" data-sl="Moduli"></span></div>
+    <div class="sl"></div>
+    <div class="si" id="si4"><span class="n">4</span><span data-en="Results" data-sl="Rezultati"></span></div>
+</div>
+
+<!-- STEP 1 -->
+<div class="sp on" id="s1">
+<div class="nt"><span>ℹ</span><span data-en="<strong>Informational estimate:</strong> Results are based on conservative industry averages. For a precise analysis of your company, we recommend personalized consulting." data-sl="<strong>Informativni izračun:</strong> Rezultati temeljijo na konzervativnih panožnih povprečjih. Za natančno analizo vašega podjetja priporočamo personalizirano svetovanje."></span></div>
+<div class="cd"><div class="ct" data-en="Your Production Profile" data-sl="Profil vaše proizvodnje"></div>
+<div class="val-err" id="v1"><span>⚠</span><span data-en="Please fill in: production employees, machines, and hourly labor cost." data-sl="Prosimo izpolnite: zaposlene v proizvodnji, stroje in urno ceno dela."></span></div>
+<div class="fg">
+    <div class="fg2"><label data-en="Company name" data-sl="Naziv podjetja"></label><div class="ir"><input type="text" id="iName" data-placeholder-en="Optional" data-placeholder-sl="Neobvezno"></div></div>
+    <div class="fg2"><label data-en="Industry sector" data-sl="Panoga"></label><select id="iInd"><option value="general" data-en="General manufacturing" data-sl="Splošna proizvodnja"></option><option value="automotive" data-en="Automotive" data-sl="Avtomobilska industrija"></option><option value="plastics" data-en="Plastics / Injection molding" data-sl="Plastika / Brizganje"></option><option value="metal" data-en="Metal processing" data-sl="Obdelava kovin"></option><option value="electronics" data-en="Electronics / Assembly" data-sl="Elektronika / Montaža"></option><option value="food" data-en="Food & Beverage" data-sl="Živilska industrija"></option><option value="pharma" data-en="Pharma / Medical" data-sl="Farmacija / Medicinski izdelki"></option><option value="other" data-en="Other" data-sl="Drugo"></option></select></div>
+    <div class="fg2"><label data-en="Production employees" data-sl="Zaposleni v proizvodnji"></label><div class="ir"><input type="number" id="iEmp" placeholder="120" min="1" max="10000"><span class="u" data-en="people" data-sl="oseb"></span></div></div>
+    <div class="fg2"><label data-en="Machines / work centers" data-sl="Stroji / delovna mesta"></label><div class="ir"><input type="number" id="iMach" placeholder="25" min="1" max="5000"><span class="u" data-en="units" data-sl="enot"></span></div></div>
+    <div class="fg2"><label data-en="Work shifts per day" data-sl="Število izmen"></label><div class="rg" id="shG"><label class="rp on"><input type="radio" name="sh" value="1" checked>1</label><label class="rp"><input type="radio" name="sh" value="2">2</label><label class="rp"><input type="radio" name="sh" value="3">3</label></div></div>
+    <div class="fg2"><label data-en="Working days per year" data-sl="Delovnih dni na leto"></label><div class="ir"><input type="number" id="iDays" placeholder="240" value="240" min="100" max="365"><span class="u" data-en="days" data-sl="dni"></span></div></div>
+    <div class="fg2"><label><span data-en="Avg. hourly labor cost" data-sl="Povp. urna cena dela"></span> <span class="h" data-en="(fully loaded)" data-sl="(z vsemi prispevki)"></span></label><div class="ir"><input type="number" id="iLC" placeholder="18" min="5" max="200" step="0.5"><span class="u">€/h</span></div></div>
+    <div class="fg2"><label data-en="Avg. machine hour rate" data-sl="Povp. strojna ura"></label><div class="ir"><input type="number" id="iMR" placeholder="45" min="5" max="500"><span class="u">€/h</span></div></div>
+</div></div>
+<div class="br"><span></span><button class="btn bp" onclick="go(2)" data-en="Continue →" data-sl="Naprej →"></button></div>
+</div>
+
+<!-- STEP 2 -->
+<div class="sp" id="s2">
+<div class="cd"><div class="ct" data-en="Current Production Processes" data-sl="Trenutni proizvodni procesi"></div>
+<div class="fg">
+    <div class="fg2"><label data-en="Manual scheduling & planning" data-sl="Ročno planiranje proizvodnje"></label><div class="ir"><input type="number" id="iSch" placeholder="10" min="0" max="200"><span class="u" data-en="hrs/week" data-sl="ur/teden"></span></div><div class="fh" data-en="Time in Excel, spreadsheets, or paper" data-sl="Čas v Excelu, preglednicah ali na papirju"></div></div>
+    <div class="fg2"><label data-en="Manual reporting & data entry" data-sl="Ročno poročanje in vnos podatkov"></label><div class="ir"><input type="number" id="iRep" placeholder="15" min="0" max="200"><span class="u" data-en="hrs/week" data-sl="ur/teden"></span></div><div class="fh" data-en="Reports, logs, data collection – all shifts combined" data-sl="Poročila, evidence, zbiranje podatkov – vse izmene skupaj"></div></div>
+    <div class="fg2"><label data-en="Unplanned machine downtime" data-sl="Nenačrtovani zastoji strojev"></label><div class="ir"><input type="number" id="iDT" placeholder="40" min="0" max="5000"><span class="u" data-en="hrs/month" data-sl="ur/mesec"></span></div><div class="fh" data-en="Total across all machines" data-sl="Skupaj na vseh strojih"></div></div>
+    <div class="fg2"><label data-en="Quality incidents / rework" data-sl="Kakovostni incidenti / popravila"></label><div class="ir"><input type="number" id="iQI" placeholder="8" min="0" max="500"><span class="u" data-en="per month" data-sl="na mesec"></span></div></div>
+    <div class="fg2 full"><div class="srow"><label data-en="Avg. cost per quality incident" data-sl="Povp. strošek incidenta kakovosti"></label><span class="sv" id="icD">500 €</span></div><input type="range" id="iIC" min="100" max="10000" step="100" value="500"><div class="fh" data-en="Include scrap, rework labor, delays, penalties" data-sl="Vključite odpadke, delo, zamude, kazni"></div></div>
+    <div class="fg2 full"><label data-en="Current maintenance approach" data-sl="Trenutni pristop k vzdrževanju"></label><div class="rg" id="mtG"><label class="rp on"><input type="radio" name="mt" value="reactive" checked><span data-en="Mostly reactive" data-sl="Večinoma kurativno"></span></label><label class="rp"><input type="radio" name="mt" value="mixed"><span data-en="Mixed" data-sl="Mešano"></span></label><label class="rp"><input type="radio" name="mt" value="preventive"><span data-en="Mostly preventive" data-sl="Večinoma preventivno"></span></label></div></div>
+    <div class="fg2"><label data-en="Annual maintenance costs" data-sl="Letni stroški vzdrževanja"></label><div class="ir"><input type="number" id="iMC" placeholder="50000" min="0" max="50000000" step="1000"><span class="u">€/<span data-en="year" data-sl="leto"></span></span></div><div class="fh" data-en="Labor, parts, contractors" data-sl="Delo, deli, zunanji izvajalci"></div></div>
+</div></div>
+<div class="br"><button class="btn bs" onclick="go(1)" data-en="← Back" data-sl="← Nazaj"></button><button class="btn bp" onclick="go(3)" data-en="Continue →" data-sl="Naprej →"></button></div>
+</div>
+
+<!-- STEP 3 -->
+<div class="sp" id="s3">
+<div class="cd"><div class="ct" data-en="Which areas would you digitalize?" data-sl="Katera področja bi digitalizirali?"></div>
+<div class="ml2">
+    <label class="mi on"><input type="checkbox" value="scheduling" checked><span class="cb"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mn" data-en="Production Scheduling" data-sl="Planiranje proizvodnje"></span><span class="md" data-en="APS, Gantt, drag & drop" data-sl="APS, Gantt, drag & drop"></span></label>
+    <label class="mi on"><input type="checkbox" value="oee" checked><span class="cb"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mn">OEE</span><span class="md" data-en="Real-time machine monitoring" data-sl="Spremljanje strojev v realnem času"></span></label>
+    <label class="mi on"><input type="checkbox" value="maintenance" checked><span class="cb"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mn" data-en="Maintenance (CMMS)" data-sl="Vzdrževanje (CMMS)"></span><span class="md" data-en="Preventive maintenance, work orders" data-sl="Preventivno vzdrževanje, delovni nalogi"></span></label>
+    <label class="mi on"><input type="checkbox" value="shopfloor" checked><span class="cb"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mn" data-en="Shop Floor" data-sl="Shop Floor"></span><span class="md" data-en="Digital instructions, real-time status" data-sl="Digitalna navodila, stanje v realnem času"></span></label>
+    <label class="mi"><input type="checkbox" value="quality"><span class="cb"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mn" data-en="8D Report / Quality" data-sl="8D poročilo / Kakovost"></span><span class="md" data-en="Root cause analysis" data-sl="Analiza vzrokov"></span></label>
+    <label class="mi"><input type="checkbox" value="traceability"><span class="cb"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mn" data-en="Traceability" data-sl="Sledljivost"></span><span class="md" data-en="Part genealogy, records" data-sl="Genealogija delov, evidence"></span></label>
+    <label class="mi"><input type="checkbox" value="tooling"><span class="cb"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mn" data-en="Mold, Tool & Die" data-sl="Orodja in kalupi"></span><span class="md" data-en="Usage tracking, costs" data-sl="Sledenje uporabe, stroški"></span></label>
+    <label class="mi"><input type="checkbox" value="andon"><span class="cb"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mn" data-en="Andon System" data-sl="Andon sistem"></span><span class="md" data-en="Real-time alerts" data-sl="Opozorila v realnem času"></span></label>
+    <label class="mi"><input type="checkbox" value="skills"><span class="cb"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="mn" data-en="Skill Matrix" data-sl="Matrika kompetenc"></span><span class="md" data-en="Employee skills tracking" data-sl="Sledenje kompetenc"></span></label>
+</div></div>
+<div class="br"><button class="btn bs" onclick="go(2)" data-en="← Back" data-sl="← Nazaj"></button><button class="btn bp" onclick="calc()" data-en="Calculate savings" data-sl="Izračunaj prihranke"></button></div>
+<div class="val-err" id="v3"><span>⚠</span><span data-en="Please go back and fill in the required fields in step 1 (employees, machines, labor cost)." data-sl="Prosimo se vrnite in izpolnite zahtevana polja v koraku 1 (zaposleni, stroji, urna cena dela)."></span></div>
+</div>
+
+<!-- STEP 4 -->
+<div class="sp" id="s4">
+<div class="rh"><div class="rl" data-en="Estimated annual savings" data-sl="Ocenjeni letni prihranki"></div><div class="rv" id="rT">0 €</div><div class="rs" id="rM"></div></div>
+<div class="mr">
+    <div class="mb"><div class="mv" id="mH">0</div><div class="ml" data-en="hours saved / year" data-sl="prihr. ur / leto"></div></div>
+    <div class="mb"><div class="mv" id="mD">0</div><div class="ml" data-en="less downtime hrs" data-sl="manj ur zastojev"></div></div>
+    <div class="mb"><div class="mv" id="mP">–</div><div class="ml" data-en="est. payback" data-sl="oce. povračilo"></div></div>
+</div>
+<div class="cd"><div class="ct" data-en="Savings Breakdown" data-sl="Razčlenitev prihrankov"></div>
+<table class="rt"><thead><tr><th data-en="Area" data-sl="Področje"></th><th data-en="Benchmark" data-sl="Merilo"></th><th data-en="Annual savings" data-sl="Letni prihranek"></th></tr></thead><tbody id="tB"></tbody></table></div>
+<div class="gb"><div class="gt" data-en="🇪🇺 EU Co-financing Opportunity" data-sl="🇪🇺 Možnost EU sofinanciranja"></div><div class="gd" data-en="Slovenian manufacturing SMEs can access up to <strong>50% co-financing</strong> for digitalization investments through programs like P4D (SPS). Software subscription costs may be eligible. <a href='https://www.podjetniskisklad.si' target='_blank'>Learn more →</a>" data-sl="Slovenska proizvodna MSP-ja lahko dostopajo do <strong>50% sofinanciranja</strong> naložb v digitalizacijo prek programov kot je P4D (SPS). Stroški naročnin programske opreme so lahko upravičeni. <a href='https://www.podjetniskisklad.si' target='_blank'>Več informacij →</a>"></div></div>
+<div class="cc"><h3 data-en="Download your personalized report" data-sl="Prenesite vaše personalizirano poročilo"></h3><p data-en="Enter your email to download a detailed PDF report with your calculation results, methodology and recommendations." data-sl="Vnesite email za prenos podrobnega PDF poročila z vašimi rezultati, metodologijo in priporočili."></p>
+<div class="cr" id="cF"><input type="email" id="cE" placeholder="your@company.com"><button class="btn bp" onclick="lead()" data-en="Download PDF" data-sl="Prenesi PDF"></button></div>
+<div class="co" id="cO" data-en="✓ Report downloaded. We'll follow up shortly." data-sl="✓ Poročilo preneseno. Kmalu se oglasimo."></div>
+<div class="cs" data-en="We'll send a follow-up email to discuss your specific situation." data-sl="Poslali vam bomo email za pogovor o vaši specifični situaciji."></div></div>
+<div class="br"><button class="btn bs" onclick="go(3)" data-en="← Adjust inputs" data-sl="← Prilagodi vnose"></button><button class="btn bs" onclick="reset()" data-en="New calculation" data-sl="Nov izračun"></button></div>
+</div>
+
+<details class="meth">
+<summary data-en="Methodology & sources" data-sl="Metodologija in viri"></summary>
+<div class="mc">
+<p data-en="All estimates use <strong>conservative</strong> values — the lower end of documented industry ranges — to avoid overpromising. Actual savings depend on process maturity, implementation scope, and organizational readiness." data-sl="Vse ocene uporabljajo <strong>konzervativne</strong> vrednosti — spodnji del dokumentiranih panožnih razponov — da ne obljubljamo preveč. Dejanski prihranki so odvisni od zrelosti procesov, obsega implementacije in organizacijske pripravljenosti."></p>
+<p data-en="<strong>Scheduling (55% time reduction):</strong> Industry reports document 50–70% reduction in manual scheduling when switching from spreadsheets to APS systems." data-sl="<strong>Planiranje (55% zmanjšanje časa):</strong> Panožna poročila dokumentirajo 50–70% zmanjšanje ročnega planiranja ob prehodu iz preglednic na APS sisteme."></p>
+<p data-en="<strong>Reporting (60% reduction):</strong> Automated shop floor data capture eliminates 60–80% of manual reporting (Deloitte Smart Manufacturing Survey)." data-sl="<strong>Poročanje (60% zmanjšanje):</strong> Avtomatizirano zajemanje podatkov odpravi 60–80% ročnega poročanja (Deloitte Smart Manufacturing Survey)."></p>
+<p data-en="<strong>Downtime (15% reduction):</strong> PwC reports predictive maintenance reduces downtime 30–50%. CMMS-based preventive maintenance achieves 15–25%. We use 15%." data-sl="<strong>Zastoji (15% zmanjšanje):</strong> PwC poroča 30–50% zmanjšanje z prediktivnim vzdrževanjem. CMMS preventivno vzdrževanje doseže 15–25%. Uporabljamo 15%."></p>
+<p data-en="<strong>Maintenance costs (12% savings):</strong> AFIM and Reliable Plant document 12–18% savings transitioning reactive → preventive. We apply 12% for reactive, 8% mixed, 3% already-preventive." data-sl="<strong>Stroški vzdrževanja (12% prihranek):</strong> AFIM in Reliable Plant dokumentirata 12–18% prihranka pri prehodu kurativno → preventivno. Uporabimo 12% za kurativno, 8% mešano, 3% že preventivno."></p>
+<p data-en="<strong>Quality (20% fewer incidents):</strong> 8D methodology + digital traceability reduces recurring issues 20–35%. We use 20%." data-sl="<strong>Kakovost (20% manj incidentov):</strong> 8D metodologija + digitalna sledljivost zmanjša ponavljajoče se težave za 20–35%. Uporabljamo 20%."></p>
+<p data-en="<strong>Productivity (2%):</strong> McKinsey Industry 4.0 research shows 3–5% labor gains from shop floor digitalization. We use 2% on direct production labor only." data-sl="<strong>Produktivnost (2%):</strong> McKinsey Industrija 4.0 raziskave kažejo 3–5% izboljšanje. Uporabljamo 2% samo na neposrednem proizvodnem delu."></p>
+<p data-en="<strong>These are estimates, not guarantees.</strong> We recommend a personalized assessment for accurate projections." data-sl="<strong>To so ocene, ne garancije.</strong> Za natančne projekcije priporočamo personalizirano oceno."></p>
+</div></details>
+
+<footer class="ft"><a href="https://promigra.com" target="_blank" rel="noopener">promigra.com</a><span>© <script>document.write(new Date().getFullYear())</script> Promigra d.o.o.</span></footer>
+</div></main>
+
+<script>
+let L='en',S=1,lastResults=null;
+function setLang(l){L=l;document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('on',b.textContent.trim()===l.toUpperCase()));document.documentElement.lang=l;document.querySelectorAll('[data-'+l+']').forEach(e=>{e.innerHTML=e.getAttribute('data-'+l)});document.querySelectorAll('[data-placeholder-'+l+']').forEach(e=>{e.placeholder=e.getAttribute('data-placeholder-'+l)});document.querySelectorAll('select option').forEach(o=>{const v=o.getAttribute('data-'+l);if(v)o.textContent=v});document.title=l==='sl'?'Kalkulator ROI digitalizacije — Promigra':'Manufacturing ROI Calculator — Promigra'}
+
+function clearErrors(){document.querySelectorAll('.val-err').forEach(e=>e.classList.remove('show'));document.querySelectorAll('.ir.err').forEach(e=>e.classList.remove('err'))}
+
+function showErr(id,fields){
+    clearErrors();
+    const el=document.getElementById(id);if(el){el.classList.add('show');setLang(L)}
+    if(fields)fields.forEach(f=>{const inp=document.getElementById(f);if(inp){const wrap=inp.closest('.ir');if(wrap)wrap.classList.add('err')}});
+}
+
+function validateStep1(){
+    const e=document.getElementById('iEmp').value,m=document.getElementById('iMach').value,c=document.getElementById('iLC').value;
+    const missing=[];
+    if(!e)missing.push('iEmp');if(!m)missing.push('iMach');if(!c)missing.push('iLC');
+    if(missing.length>0){showErr('v1',missing);return false}
+    clearErrors();return true;
+}
+
+function nav(n){
+    S=n;document.querySelectorAll('.sp').forEach(p=>p.classList.remove('on'));document.getElementById('s'+n).classList.add('on');
+    for(let i=1;i<=4;i++){const s=document.getElementById('si'+i);s.classList.remove('on','ok');if(i<n)s.classList.add('ok');else if(i===n)s.classList.add('on')}
+    window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function go(n){
+    if(n>1&&!validateStep1())return;
+    clearErrors();
+    nav(n);
+}
+
+document.querySelectorAll('.mi').forEach(e=>{e.addEventListener('click',ev=>{if(ev.target.tagName==='INPUT')return;const cb=e.querySelector('input');cb.checked=!cb.checked;e.classList.toggle('on',cb.checked)})});
+document.querySelectorAll('.rg').forEach(g=>{g.querySelectorAll('.rp').forEach(p=>{p.addEventListener('click',()=>{g.querySelectorAll('.rp').forEach(x=>x.classList.remove('on'));p.classList.add('on')})})});
+const iS=document.getElementById('iIC'),iD=document.getElementById('icD');iS.addEventListener('input',()=>{iD.textContent=Number(iS.value).toLocaleString('de-DE')+' €'});
+function fmt(n){return Math.round(n).toLocaleString('de-DE')+' €'}
+function mods(){return[...document.querySelectorAll('.mi input:checked')].map(c=>c.value)}
+
+// Clear errors when user starts typing in flagged fields
+document.querySelectorAll('#iEmp,#iMach,#iLC').forEach(inp=>{inp.addEventListener('input',()=>{const wrap=inp.closest('.ir');if(wrap)wrap.classList.remove('err');if(!document.querySelector('.ir.err')){document.querySelectorAll('.val-err').forEach(e=>e.classList.remove('show'))}})});
+
+function calc(){
+    if(!validateStep1()){showErr('v3');nav(3);return}
+    clearErrors();
+
+    const emp=+document.getElementById('iEmp').value||0,mach=+document.getElementById('iMach').value||0,sh=+document.querySelector('input[name="sh"]:checked').value,wd=+document.getElementById('iDays').value||240,lc=+document.getElementById('iLC').value||0,mr=+document.getElementById('iMR').value||0,schH=+document.getElementById('iSch').value||0,repH=+document.getElementById('iRep').value||0,dtH=+document.getElementById('iDT').value||0,qi=+document.getElementById('iQI').value||0,ic=+iS.value||500,ma=document.querySelector('input[name="mt"]:checked').value,mc=+document.getElementById('iMC').value||0,M=mods(),wk=Math.round(wd/5),R=[];let tH=0,tD=0;
+    if(M.includes('scheduling')&&schH>0){const s=schH*.55*wk,v=s*lc;tH+=s;R.push({a:L==='sl'?'Planiranje proizvodnje':'Production Scheduling',b:'55%',v})}
+    if((M.includes('shopfloor')||M.includes('oee'))&&repH>0){const s=repH*.60*wk,v=s*lc;tH+=s;R.push({a:L==='sl'?'Poročanje in vnos podatkov':'Reporting & Data Entry',b:'60%',v})}
+    if((M.includes('maintenance')||M.includes('oee'))&&dtH>0){const p=(M.includes('maintenance')&&M.includes('oee'))?0.15:0.10,s=dtH*p*12,v=s*mr;tD=s;R.push({a:L==='sl'?'Zmanjšanje zastojev':'Downtime Reduction',b:Math.round(p*100)+'%',v})}
+    if(M.includes('maintenance')&&mc>0){let p=.12;if(ma==='mixed')p=.08;if(ma==='preventive')p=.03;R.push({a:L==='sl'?'Stroški vzdrževanja (AFIM)':'Maintenance Costs (AFIM)',b:Math.round(p*100)+'%',v:mc*p})}
+    if((M.includes('quality')||M.includes('traceability'))&&qi>0){let p=.15;if(M.includes('quality')&&M.includes('traceability'))p=.25;else if(M.includes('quality'))p=.20;R.push({a:L==='sl'?'Kakovost in popravila':'Quality & Rework',b:Math.round(p*100)+'%',v:qi*p*12*ic})}
+    if(M.includes('andon')&&dtH>0&&mr>0){R.push({a:L==='sl'?'Andon odzivni čas':'Andon Response Time',b:'8%',v:dtH*.08*12*mr})}
+    if(M.includes('tooling')&&mach>0){R.push({a:L==='sl'?'Upravljanje orodij':'Tool Management',b:'~150 €/'+(L==='sl'?'stroj':'mach.'),v:mach*150})}
+    if(M.includes('shopfloor')&&emp>0){const al=emp*lc*8*sh*wd,v=al*.02;tH+=Math.round(v/lc);R.push({a:L==='sl'?'Produktivnost':'Productivity',b:'2%',v})}
+    if(M.includes('skills')&&emp>0){const s=emp*1.5,v=s*lc;tH+=s;R.push({a:L==='sl'?'Matrika kompetenc':'Skill Matrix',b:'1.5h/'+(L==='sl'?'zaposl.':'empl.'),v})}
+    R.sort((a,b)=>b.v-a.v);const tot=R.reduce((s,r)=>s+r.v,0);
+    document.getElementById('rT').textContent=fmt(tot);document.getElementById('rM').textContent=fmt(tot/12)+' / '+(L==='sl'?'mesec':'month');document.getElementById('mH').textContent=Math.round(tH).toLocaleString('de-DE');document.getElementById('mD').textContent=Math.round(tD).toLocaleString('de-DE');
+    const ec=400+M.length*120,pb=tot>0?Math.round(ec*12/(tot/12*12)):0;document.getElementById('mP').textContent=pb&&pb<=24?pb+' '+(L==='sl'?'mes.':'mo.'):'< 2 '+(L==='sl'?'leti':'yrs');
+    const tb=document.getElementById('tB');tb.innerHTML='';R.forEach(r=>{const tr=document.createElement('tr');tr.innerHTML='<td>'+r.a+'</td><td>'+r.b+'</td><td>'+fmt(r.v)+'</td>';tb.appendChild(tr)});const ft=document.createElement('tr');ft.innerHTML='<td>'+(L==='sl'?'SKUPAJ LETNO':'TOTAL ANNUAL')+'</td><td></td><td>'+fmt(tot)+'</td>';tb.appendChild(ft);
+    lastResults={emp,mach,sh,wd,lc,mr,schH,repH,dtH,qi,ic,ma,mc,M,R,tot,tH,tD,pb,company:document.getElementById('iName').value,industry:document.getElementById('iInd').value};
+    nav(4);
+}
+function loadScript(url){return new Promise((res,rej)=>{const s=document.createElement('script');s.src=url;s.onload=res;s.onerror=rej;document.head.appendChild(s)})}
+
+async function loadPdfLibs(){
+    if(window.jspdf)return true;
+    const cdns=[
+        ['https://unpkg.com/jspdf@2.5.2/dist/jspdf.umd.min.js','https://unpkg.com/jspdf-autotable@3.8.4/dist/jspdf.plugin.autotable.min.js'],
+        ['https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js','https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.4/dist/jspdf.plugin.autotable.min.js'],
+        ['https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.2/jspdf.umd.min.js','https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.4/jspdf.plugin.autotable.min.js']
+    ];
+    for(const [a,b] of cdns){
+        try{await loadScript(a);await loadScript(b);if(window.jspdf)return true}catch(e){continue}
+    }
+    return false;
+}
+
+async function lead(){
+    const email=document.getElementById('cE').value;
+    if(!email||!email.includes('@')){document.getElementById('cE').style.borderColor='#dc2626';return}
+    if(!lastResults)return;
+
+    // Show loading state
+    const btn=document.querySelector('#cF .btn');
+    const origText=btn.textContent;
+    btn.textContent=L==='sl'?'Nalagam...':'Loading...';
+    btn.disabled=true;
+
+    // Load PDF libs if needed
+    const loaded=await loadPdfLibs();
+    if(!loaded){
+        btn.textContent=origText;btn.disabled=false;
+        const errDiv=document.getElementById('cO');
+        errDiv.textContent=L==='sl'?'Napaka pri nalaganju PDF knjižnice. Prosimo poskusite znova.':'Error loading PDF library. Please try again.';
+        errDiv.style.color='#dc2626';errDiv.classList.add('show');
+        return;
+    }
+
+    const d=lastResults,sl=L==='sl';
+    const {jsPDF}=window.jspdf;
+    const doc=new jsPDF({unit:'mm',format:'a4'});
+    const W=210,H=297,M=20,CW=W-2*M;
+    const pri=[26,86,219],green=[13,138,94],gray=[90,97,120],lgray=[139,145,165],dark=[26,31,46];
+    let y=M;
+
+    function addPage(){doc.addPage();y=M}
+    function txt(t,x,yy,opt={}){
+        doc.setFont('helvetica',opt.bold?'bold':'normal');
+        doc.setFontSize(opt.size||10);
+        doc.setTextColor(...(opt.color||dark));
+        if(opt.align==='right')doc.text(t,x,yy,{align:'right'});
+        else if(opt.align==='center')doc.text(t,x,yy,{align:'center'});
+        else doc.text(t,x,yy);
+    }
+    function line(y1,color){doc.setDrawColor(...(color||[226,229,235]));doc.setLineWidth(0.3);doc.line(M,y1,W-M,y1)}
+    function fmtP(n){return Math.round(n).toLocaleString('de-DE')+' €'}
+
+    // ─── Header bar ───
+    doc.setFillColor(26,31,46);
+    doc.rect(0,0,W,16,'F');
+    txt('PROMIGRA',M,10.5,{size:12,bold:true,color:[255,255,255]});
+    txt('promigra.com',W-M,10.5,{size:8,color:[180,185,200],align:'right'});
+
+    y=28;
+
+    // ─── Title ───
+    txt(sl?'Poročilo o donosnosti digitalizacije proizvodnje':'Manufacturing Digitalization ROI Report',M,y,{size:18,bold:true,color:dark});
+    y+=8;
+    const dateStr=new Date().toLocaleDateString(sl?'sl-SI':'en-GB',{year:'numeric',month:'long',day:'numeric'});
+    txt((sl?'Pripravljeno: ':'Prepared: ')+dateStr,M,y,{size:9,color:lgray});
+    if(d.company){y+=5;txt((sl?'Podjetje: ':'Company: ')+d.company,M,y,{size:9,color:lgray})}
+    y+=4;
+    line(y);
+    y+=10;
+
+    // ─── Big number ───
+    doc.setFillColor(232,247,240);
+    doc.roundedRect(M,y,CW,32,3,3,'F');
+    txt(sl?'Ocenjeni letni prihranki':'Estimated Annual Savings',W/2,y+10,{size:11,color:gray,align:'center'});
+    txt(fmtP(d.tot),W/2,y+24,{size:28,bold:true,color:green,align:'center'});
+    y+=40;
+
+    // ─── Key metrics ───
+    const metrics=[
+        {label:sl?'Prihr. ur / leto':'Hours saved / year',val:Math.round(d.tH).toLocaleString('de-DE')},
+        {label:sl?'Manj ur zastojev':'Less downtime hrs',val:Math.round(d.tD).toLocaleString('de-DE')},
+        {label:sl?'Oce. povračilo':'Est. payback',val:d.pb&&d.pb<=24?d.pb+(sl?' mes.':' mo.'):'< 2 '+(sl?'leti':'yrs')},
+        {label:sl?'Mesečni prihranek':'Monthly savings',val:fmtP(d.tot/12)}
+    ];
+    const mw=CW/4;
+    metrics.forEach((m,i)=>{
+        const mx=M+i*mw;
+        txt(m.val,mx+mw/2,y+4,{size:13,bold:true,color:dark,align:'center'});
+        txt(m.label,mx+mw/2,y+10,{size:7,color:lgray,align:'center'});
+    });
+    y+=18;
+    line(y);
+    y+=8;
+
+    // ─── Company profile ───
+    txt(sl?'Profil proizvodnje':'Production Profile',M,y,{size:12,bold:true});
+    y+=7;
+    const indLabels={general:sl?'Splošna proizvodnja':'General manufacturing',automotive:sl?'Avtomobilska':'Automotive',plastics:sl?'Plastika':'Plastics',metal:sl?'Obdelava kovin':'Metal processing',electronics:sl?'Elektronika':'Electronics',food:sl?'Živilska':'Food & Beverage',pharma:sl?'Farmacija':'Pharma/Medical',other:sl?'Drugo':'Other'};
+    const maintLabels={reactive:sl?'Večinoma kurativno':'Mostly reactive',mixed:sl?'Mešano':'Mixed',preventive:sl?'Večinoma preventivno':'Mostly preventive'};
+    const profile=[
+        [sl?'Zaposleni v proizvodnji':'Production employees',d.emp],
+        [sl?'Stroji / delovna mesta':'Machines / work centers',d.mach],
+        [sl?'Izmene':'Shifts',d.sh],
+        [sl?'Delovnih dni / leto':'Working days / year',d.wd],
+        [sl?'Urna cena dela':'Hourly labor cost',d.lc+' €/h'],
+        [sl?'Strojna ura':'Machine hour rate',d.mr+' €/h'],
+        [sl?'Panoga':'Industry',indLabels[d.industry]||d.industry],
+        [sl?'Pristop k vzdrževanju':'Maintenance approach',maintLabels[d.ma]||d.ma]
+    ];
+    profile.forEach(r=>{
+        txt(r[0],M,y,{size:9,color:gray});
+        txt(String(r[1]),W-M,y,{size:9,bold:true,align:'right'});
+        y+=5.5;
+    });
+    y+=4;
+    line(y);
+    y+=8;
+
+    // ─── Breakdown table ───
+    txt(sl?'Razčlenitev prihrankov':'Savings Breakdown',M,y,{size:12,bold:true});
+    y+=4;
+    const tableRows=d.R.map(r=>[r.a,r.b,fmtP(r.v)]);
+    tableRows.push([{content:sl?'SKUPAJ LETNO':'TOTAL ANNUAL',styles:{fontStyle:'bold'}},{content:'',styles:{}},{content:fmtP(d.tot),styles:{fontStyle:'bold',textColor:green}}]);
+
+    doc.autoTable({
+        startY:y,
+        margin:{left:M,right:M},
+        head:[[sl?'Področje':'Area',sl?'Merilo':'Benchmark',sl?'Letni prihranek':'Annual Savings']],
+        body:tableRows,
+        styles:{font:'helvetica',fontSize:9,cellPadding:3,lineColor:[226,229,235],lineWidth:0.2},
+        headStyles:{fillColor:[248,249,251],textColor:dark,fontStyle:'bold',fontSize:8},
+        columnStyles:{0:{cellWidth:'auto'},1:{cellWidth:30,halign:'right'},2:{cellWidth:35,halign:'right',textColor:green}},
+        theme:'grid',
+        didParseCell:function(data){if(data.row.index===tableRows.length-1){data.cell.styles.fillColor=[248,249,251]}}
+    });
+    y=doc.lastAutoTable.finalY+10;
+
+    // ─── Check if need new page ───
+    if(y>H-80)addPage();
+
+    // ─── EU Grant box ───
+    doc.setFillColor(254,243,226);
+    doc.roundedRect(M,y,CW,22,3,3,'F');
+    doc.setDrawColor(245,217,168);
+    doc.roundedRect(M,y,CW,22,3,3,'S');
+    txt(sl?'EU sofinanciranje':'EU Co-financing',M+5,y+6,{size:9,bold:true,color:[180,83,9]});
+    const grantText=sl
+        ?'Slovenska proizvodna MSP-ja lahko dostopajo do 50% sofinanciranja naložb v digitalizacijo prek programov kot je P4D (SPS). Stroški naročnin programske opreme so lahko upravičeni. Več: podjetniskisklad.si'
+        :'Slovenian manufacturing SMEs can access up to 50% co-financing for digitalization investments through programs like P4D (SPS). Software subscription costs may be eligible. More: podjetniskisklad.si';
+    const grantLines=doc.splitTextToSize(grantText,CW-10);
+    doc.setFont('helvetica','normal');doc.setFontSize(8);doc.setTextColor(...gray);
+    doc.text(grantLines,M+5,y+12);
+    y+=30;
+
+    if(y>H-70)addPage();
+
+    // ─── Methodology ───
+    txt(sl?'Metodologija':'Methodology',M,y,{size:12,bold:true});
+    y+=7;
+    const methods=[
+        [sl?'Planiranje (55%)':'Scheduling (55%)',sl?'Panožna poročila: 50-70% zmanjšanje ročnega planiranja ob prehodu na APS. Uporabljamo 55%.':'Industry reports: 50-70% reduction in manual scheduling with APS. We use 55%.'],
+        [sl?'Poročanje (60%)':'Reporting (60%)',sl?'Avtomatizirano zajemanje podatkov odpravi 60-80% ročnega poročanja (Deloitte). Uporabljamo 60%.':'Automated data capture eliminates 60-80% of manual reporting (Deloitte). We use 60%.'],
+        [sl?'Zastoji (15%)':'Downtime (15%)',sl?'PwC: prediktivno vzdrževanje zmanjša zastoje 30-50%. CMMS preventivno: 15-25%. Uporabljamo 15%.':'PwC: predictive maintenance reduces downtime 30-50%. CMMS preventive: 15-25%. We use 15%.'],
+        [sl?'Vzdrževanje (12%)':'Maintenance (12%)',sl?'AFIM in Reliable Plant: 12-18% prihranka pri prehodu kurativno → preventivno.':'AFIM & Reliable Plant: 12-18% savings transitioning reactive → preventive.'],
+        [sl?'Kakovost (20%)':'Quality (20%)',sl?'8D + digitalna sledljivost: 20-35% manj ponavljajočih se težav. Uporabljamo 20%.':'8D + digital traceability: 20-35% fewer recurring issues. We use 20%.'],
+        [sl?'Produktivnost (2%)':'Productivity (2%)',sl?'McKinsey Industrija 4.0: 3-5% izboljšanje. Uporabljamo konzervativna 2%.':'McKinsey Industry 4.0: 3-5% labor gains. We use conservative 2%.']
+    ];
+    methods.forEach(m=>{
+        if(y>H-20)addPage();
+        txt(m[0],M,y,{size:8,bold:true,color:dark});
+        y+=4;
+        const mLines=doc.splitTextToSize(m[1],CW);
+        doc.setFont('helvetica','normal');doc.setFontSize(7.5);doc.setTextColor(...lgray);
+        doc.text(mLines,M,y);
+        y+=mLines.length*3.5+3;
+    });
+
+    y+=4;
+    doc.setFillColor(248,249,251);
+    doc.roundedRect(M,y,CW,12,2,2,'F');
+    const disc=sl?'To so ocene, ne garancije. Dejanski prihranki so odvisni od zrelosti procesov, obsega implementacije in organizacijske pripravljenosti.':'These are estimates, not guarantees. Actual savings depend on process maturity, implementation scope, and organizational readiness.';
+    const discLines=doc.splitTextToSize(disc,CW-8);
+    doc.setFont('helvetica','italic');doc.setFontSize(7);doc.setTextColor(...lgray);
+    doc.text(discLines,M+4,y+5);
+    y+=18;
+
+    // ─── CTA ───
+    if(y>H-35)addPage();
+    line(y);
+    y+=8;
+    txt(sl?'Naslednji korak':'Next Step',M,y,{size:12,bold:true});
+    y+=7;
+    const ctaTxt=sl
+        ?'Želite podrobnejšo analizo za vaše podjetje? Kontaktirajte nas za brezplačen posvet o digitalizaciji vaše proizvodnje.'
+        :'Want a deeper analysis for your company? Contact us for a free consultation on digitalizing your production.';
+    const ctaLines=doc.splitTextToSize(ctaTxt,CW);
+    doc.setFont('helvetica','normal');doc.setFontSize(9);doc.setTextColor(...gray);
+    doc.text(ctaLines,M,y);
+    y+=ctaLines.length*4+6;
+    txt('info@promigra.com  |  promigra.com',M,y,{size:9,bold:true,color:pri});
+
+    // ─── Footer on all pages ───
+    const pages=doc.internal.getNumberOfPages();
+    for(let i=1;i<=pages;i++){
+        doc.setPage(i);
+        doc.setFontSize(7);doc.setTextColor(...lgray);doc.setFont('helvetica','normal');
+        doc.text('© '+new Date().getFullYear()+' Promigra d.o.o. | promigra.com',M,H-10);
+        doc.text((sl?'Stran ':'Page ')+i+'/'+pages,W-M,H-10,{align:'right'});
+    }
+
+    // ─── Save PDF ───
+    const fname=(d.company?d.company.replace(/[^a-zA-Z0-9]/g,'_')+'_':'')+'Promigra_ROI_Report.pdf';
+    doc.save(fname);
+
+    // ─── Send lead data ───
+    // REPLACE with your Formspree endpoint:
+    // fetch('https://formspree.io/f/YOUR_ID',{
+    //     method:'POST',
+    //     headers:{'Content-Type':'application/json'},
+    //     body:JSON.stringify({
+    //         email,company:d.company,industry:d.industry,
+    //         employees:d.emp,machines:d.mach,
+    //         total_savings:fmtP(d.tot),hours_saved:Math.round(d.tH),
+    //         modules:d.M.join(', '),
+    //         _subject:'ROI Calculator Lead – '+(d.company||email)
+    //     })
+    // });
+
+    console.log('Lead:',{email,company:d.company,industry:d.industry,employees:d.emp,savings:fmtP(d.tot),modules:d.M});
+    document.getElementById('cF').style.display='none';
+    document.getElementById('cO').classList.add('show');
+    setLang(L);
+}
+function reset(){document.querySelectorAll('input[type=number]').forEach(i=>i.value='');document.getElementById('iName').value='';iS.value=500;iD.textContent='500 €';document.getElementById('iDays').value='240';clearErrors();nav(1)}
+document.querySelectorAll('input[type=number]').forEach(i=>{i.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();if(S<3)go(S+1);else if(S===3)calc()}})});
+setLang('en');
+</script>
+</body>
+</html>
