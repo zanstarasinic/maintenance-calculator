@@ -542,7 +542,22 @@ async function lead(){
 }
 function reset(){document.querySelectorAll('input[type=number]').forEach(i=>i.value='');document.getElementById('iName').value='';iS.value=500;iD.textContent='500 €';document.getElementById('iDays').value='240';clearErrors();nav(1)}
 document.querySelectorAll('input[type=number]').forEach(i=>{i.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();if(S<3)go(S+1);else if(S===3)calc()}})});
-setLang('en');
+// Auto-detect language: URL param > referrer > browser > default en
+function detectLang(){
+    const params=new URLSearchParams(window.location.search);
+    const p=params.get('lang');
+    if(p==='sl'||p==='en')return p;
+    // Check if embedded in iframe - parent might pass lang via hash
+    if(window.location.hash==='#sl')return 'sl';
+    if(window.location.hash==='#en')return 'en';
+    // Check referrer URL for /sl/ path (promigra.com/sl/...)
+    try{if(document.referrer&&new URL(document.referrer).pathname.startsWith('/sl'))return 'sl'}catch(e){}
+    // Browser language
+    const bl=(navigator.language||'').toLowerCase();
+    if(bl.startsWith('sl'))return 'sl';
+    return 'en';
+}
+setLang(detectLang());
 </script>
 </body>
 </html>
